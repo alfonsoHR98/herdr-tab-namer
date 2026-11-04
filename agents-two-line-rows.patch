@@ -1,5 +1,5 @@
 --- a/mods/agents/main.js	2026-11-04 16:58:24
-+++ b/mods/agents/main.js	2026-11-04 16:58:46
++++ b/mods/agents/main.js	2026-11-04 17:14:12
 @@ -328,14 +328,13 @@
            cx.notify();
          })
@@ -8,7 +8,7 @@
 -      // Without a space header above (priority, pinned) the row names its space.
 -      const full = byPriority || isPinned;
 -      const name = full ? a.space_name || label(a) : more ?? (/^\d+$/.test(label(a)) ? a.program?.name || label(a) : label(a));
-+      // Dos líneas: arriba el nombre de la tab, debajo el space al que pertenece.
++      // Two lines: the tab name on top, the space it belongs to below.
 +      const tabName = /^\d+$/.test(label(a)) ? a.program?.name || label(a) : label(a);
 +      const spaceName = a.space_name || "";
        return h_flex()
@@ -44,7 +44,7 @@
 +                .text_color(t.dim)
 +                .hover((s) => s.text_color(t.foreground))
 +                .on_click(() => run("mod.open", { name: "tab-namer" }))
-+                .tooltip("Nombrar la tab con IA (alt-shift-n)")
++                .tooltip("Name the tab with AI (alt-shift-n)")
 +                .child("\u2726"),
 +            )
 +            .child(

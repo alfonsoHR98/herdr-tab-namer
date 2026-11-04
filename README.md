@@ -1,47 +1,48 @@
 # tab-namer
 
-Un mod de [Herdr](https://herdr.dev) que renombra la tab activa con un nombre corto generado por IA,
-en minúsculas y con guiones bajos (`fix_login_api`), y un parche opcional para que la sección
-**Agents** muestre el nombre de la tab y, debajo, el space al que pertenece.
+A [Herdr](https://herdr.dev) mod that renames the active tab with a short AI-generated name, lowercase
+and joined with underscores (`fix_login_api`), plus an optional patch so the **Agents** section shows
+the tab name and, below it, the space it belongs to.
 
-## Cómo funciona
+## How it works
 
-Al abrirse, el mod lee las últimas líneas de la pantalla del terminal de la tab activa, su carpeta, su
-título y el nombre del space, se las pasa a `claude -p --model haiku` y renombra la tab con `tab.rename`.
-Responde de 1 a 3 palabras, sin espacios ni acentos, máximo 24 caracteres. Se abre y se cierra solo.
+When opened, the mod reads the last lines of the active tab's terminal screen, its folder, its title and
+the space name, passes them to `claude -p --model haiku` and renames the tab with `tab.rename`. It
+answers with 1 to 3 words, no spaces or accents, 24 characters at most. It opens and closes itself.
 
-## Instalación
+## Install
 
-Pídele a tu agente: *"Read ~/.config/herdr-app/AGENTS.md, then add this mod:
-github.com/alfonsoHR98/herdr-tab-namer"*. O a mano:
+Ask your agent: *"Read ~/.config/herdr-app/AGENTS.md, then add this mod:
+github.com/alfonsoHR98/herdr-tab-namer"*. Or by hand:
 
 ```sh
 cp -R mods/tab-namer ~/.config/herdr-app/mods/
 herdr-app check ~/.config/herdr-app/mods/tab-namer
 ```
 
-Mezcla [keys.json](keys.json) con el tuyo (`alt-shift-n` renombra la tab activa).
+Merge [keys.json](keys.json) into yours (`alt-shift-n` renames the active tab).
 
-### Parche opcional: Agents con dos líneas y botón ✦
+### Optional patch: two-line Agents rows and a ✦ button
 
-[agents-filas-dos-lineas.patch](agents-filas-dos-lineas.patch) cambia el mod `agents` que trae Herdr: cada
-fila muestra el nombre de la tab arriba y su space debajo (en gris), y el encabezado gana un botón ✦ que
-abre `tab-namer`. Hecho sobre la versión de Herdr App 0.1.13; si tu `agents` es otro, aplícalo a mano.
+[agents-two-line-rows.patch](agents-two-line-rows.patch) changes the `agents` mod that ships with
+Herdr: each row shows the tab name on top and its space below (in gray), and the header gains a ✦
+button that opens `tab-namer`. Made against Herdr App 0.1.13; if your `agents` differs, apply it by hand.
 
 ```sh
-cd ~/.config/herdr-app && patch -p1 < ruta/a/agents-filas-dos-lineas.patch
+cd ~/.config/herdr-app && patch -p1 < path/to/agents-two-line-rows.patch
 ```
 
-## Requisitos y qué toca
+## Requirements and what it touches
 
-- Tener `claude` (Claude Code) instalado y con sesión iniciada. Usa tu cuenta.
-- **Privacidad:** se envía a Claude un fragmento de la pantalla del terminal (hasta unas 60 líneas), la
-  carpeta, el título y el nombre del space. No nombres con esto una tab que muestre datos sensibles.
-- Ejecuta `hc read` (lee la pantalla) y `claude`; no usa red por su cuenta ni guarda archivos.
+- `claude` (Claude Code) installed and signed in. It uses your account.
+- **Privacy:** a fragment of the terminal screen (up to about 60 lines), the folder, the title and the
+  space name are sent to Claude. Don't name a tab with this if it shows sensitive data.
+- It runs `hc read` (reads the screen) and `claude`; it makes no network calls of its own and stores
+  no files.
 
-## Límites
+## Limits
 
-- Solo renombra la tab activa, una a la vez.
-- Si `claude` falla (sesión caducada, sin red), avisa con una notificación y no cambia nada.
+- It only renames the active tab, one at a time.
+- If `claude` fails (expired sign-in, no network), it notifies you and changes nothing.
 
-Código: MIT.
+Code: MIT.
