@@ -1,4 +1,4 @@
---- /private/tmp/claude-501/-Users-madaradev/714ae7ae-a410-4339-b8a7-d9a0cdfacc5e/scratchpad/agents-main.js.bak	2026-11-04 16:58:24
+--- a/mods/agents/main.js	2026-11-04 16:58:24
 +++ b/mods/agents/main.js	2026-11-04 16:58:46
 @@ -328,14 +328,13 @@
            cx.notify();
