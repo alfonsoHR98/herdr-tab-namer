@@ -20,6 +20,8 @@ cp -R mods/tab-namer ~/.config/herdr-app/mods/
 herdr-app check ~/.config/herdr-app/mods/tab-namer
 ```
 
+The full brief to rebuild it from scratch is in [RECIPE.md](RECIPE.md).
+
 Merge [keys.json](keys.json) into yours (`alt-shift-n` renames the active tab).
 
 ### Optional patch: two-line Agents rows and a ✦ button
